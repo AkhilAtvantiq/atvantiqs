@@ -6,6 +6,9 @@ module.exports = {
     ],
     theme: {
       extend: {
+        fontFamily: {
+        // sans: ['Poppins', 'ui-sans-serif'],
+      },
         colors: {
           neonGreen: '#1DA1F4',
         },

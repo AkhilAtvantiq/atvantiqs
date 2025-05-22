@@ -1,7 +1,7 @@
 //import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Brandsection from "@/components/landing/Brandsection";
-import CaseStudiesSection from "@/components/landing/Casestudy";
+//import CaseStudiesSection from "@/components/landing/Casestudy";
 import Empower from "@/components/landing/Empowering";
 import Footer from "@/components/landing/Footer";
 import Hero from "@/components/landing/Hero";
@@ -19,7 +19,7 @@ export default function Home() {
         <Empower/>
         <Testimonials/>
         <Why/>
-        <CaseStudiesSection/>
+        {/* <CaseStudiesSection/> */}
         <HowSection/>
         <Brandsection/>
         <Footer/>

@@ -3,6 +3,10 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 // Animation variants
 const containerVariants: Variants = {
@@ -41,12 +45,26 @@ const testimonials = [
     position: "CEO @ Techie Inc.",
     avatar: "/profile/profile2.png",
   },
+  {
+    quote:
+      "Their communication was clear, timely, and effective throughout. We would recommend them to anyone.",
+    name: "Emily Davis",
+    position: "Head of Product @ BrightTech",
+    avatar: "/profile/profile3.png",
+  },
+  {
+    quote:
+      "They consistently delivered high-quality work that exceeded our expectations. A pleasure to work with.",
+    name: "Michael Brown",
+    position: "CTO @ CloudZone",
+    avatar: "/profile/profile4.png",
+  },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="relative py-24 bg-gray-900 text-white overflow-hidden">
-      {/* Wave background inspired by logo's "A" shape */}
+    <section className="relative bg-white px-5 py-[100px]">
+      {/* Wave background */}
       <div className="absolute inset-0 z-0">
         <svg
           className="w-full h-full opacity-10 animate-pulse"
@@ -54,74 +72,115 @@ const Testimonials = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M0 300C200 400 400 200 600 300C800 400 1000 200 1200 300C1400 400 1440 300 1440 300V600H0V300Z"
-            fill="url(#gradient)"
-          />
           <defs>
-            <linearGradient id="gradient" x1="0" y1="0" x2="1440" y2="600">
-              <stop offset="0%" stopColor="#226fe7" />
-              <stop offset="100%" stopColor="#00A3FF" />
+            <linearGradient id="testimonialGradient" x1="0" y1="0" x2="1440" y2="600">
+              <stop offset="0%" stopColor="#e0e0ff" />
+              <stop offset="100%" stopColor="#cac4ff" />
             </linearGradient>
           </defs>
+          <path
+            d="M0 300C200 400 400 200 600 300C800 400 1000 200 1200 300C1400 400 1440 300 1440 300V600H0V300Z"
+            fill="url(#testimonialGradient)"
+          />
         </svg>
       </div>
 
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        className="relative z-10 max-w-[1200px] mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={containerVariants}
       >
-        <motion.h5
-          variants={cardVariants}
-          className="text-[#226fe7] text-lg md:text-xl uppercase tracking-wider font-medium mb-4 font-poppins"
-        >
-          Trusted by 50+ Clients
-        </motion.h5>
-        <motion.h2
-          variants={cardVariants}
-          className="text-3xl md:text-5xl font-bold font-poppins mb-12"
-        >
-          What Our Clients Say
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, index) => (
-            <Tilt
-              key={index}
-              tiltMaxAngleX={10}
-              tiltMaxAngleY={10}
-              scale={1.05}
-              transitionSpeed={2000}
-              className="relative"
+        <div className="flex items-center justify-between mb-12">
+          <div>
+            <motion.h5
+              variants={cardVariants}
+              className="text-[#BFBFBF] text-xs uppercase tracking-widest font-bold mb-2 font-poppins"
             >
-              <motion.div
-                variants={cardVariants}
-                className="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-lg hover:shadow-blue-500/50 transition-shadow border border-blue-600/20"
-              >
-                <div className="absolute -top-4 -left-4 text-6xl text-[#226fe7] opacity-30">
-                  “
-                </div>
-                <p className="text-lg md:text-xl text-gray-200 font-light italic mb-6 leading-relaxed">
-                  {t.quote}
-                </p>
-                <div className="flex items-center gap-4">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-14 h-14 object-cover rounded-full border-2 border-[#226fe7] transform hover:scale-110 transition-transform"
-                  />
-                  <div className="text-left">
-                    <p className="font-semibold text-white font-poppins">{t.name}</p>
-                    <p className="text-sm text-[#226fe7] font-dm">{t.position}</p>
-                  </div>
-                </div>
-              </motion.div>
-            </Tilt>
-          ))}
+              Trusted by 50+ Clients
+            </motion.h5>
+            <motion.h2
+              variants={cardVariants}
+              className="text-[20px] md:text-[30px] font-medium text-[#3c3f94] uppercase font-poppins"
+            >
+              What Our Clients Say
+            </motion.h2>
+          </div>
+          <motion.div
+            variants={cardVariants}
+            className="text-[#ff5443] text-sm md:text-base font-medium underline cursor-pointer font-poppins"
+          >
+            View More
+          </motion.div>
         </div>
+
+        <Swiper
+          modules={[Pagination]}
+          pagination={{
+            clickable: true,
+            el: ".custom-pagination",
+            bulletClass: "swiper-pagination-bullet custom-bullet",
+            bulletActiveClass: "swiper-pagination-bullet-active",
+          }}
+          spaceBetween={30}
+          breakpoints={{
+            1024: { slidesPerView: 3 },
+            768: { slidesPerView: 2 },
+            0: { slidesPerView: 1 },
+          }}
+        >
+          {testimonials.map((t, index) => (
+            <SwiperSlide key={index}>
+              <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                scale={1.05}
+                transitionSpeed={2000}
+                className="relative"
+              >
+                <motion.div
+                  variants={cardVariants}
+                  className="bg-gray-100 p-8 rounded-xl shadow-lg hover:shadow-[#2e5bff]/20 hover:bg-grey-400 transition-shadow border border-gray-200 h-full"
+                >
+                  <div className="absolute -top-4 -left-4 text-6xl text-[#3c3f94] opacity-30">“</div>
+                  <p className="text-base md:text-lg text-[#8c8c8c] font-normal italic mb-6 leading-relaxed font-poppins">
+                    {t.quote}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={t.avatar}
+                      alt={`${t.name}, ${t.position}`}
+                      className="w-14 h-14 object-cover rounded-full border-2 border-[#3c3f94]/30 transform hover:scale-110 transition-transform "
+                    />
+                    <div className="text-left">
+                      <p className="font-semibold text-black font-poppins">{t.name}</p>
+                      <p className="text-sm text-[#3c3f94] font-poppins">{t.position}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </Tilt>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Custom Pagination */}
+        <div className="custom-pagination mt-8 flex justify-center gap-3"></div>
+
+        <style jsx global>{`
+          .custom-bullet {
+            width: 20px;
+            height: 3px;
+            background: #bfbfbf;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+          }
+          .custom-bullet.swiper-pagination-bullet-active {
+            opacity: 1;
+            background: #3c3f94;
+          }
+        `}</style>
       </motion.div>
     </section>
   );

@@ -44,23 +44,23 @@ export default function Technology() {
       {/* Background shape (subtle circle) */}
 
       <div className="relative z-10">
-        <h2 className="text-[36px] md:text-[48px] font-extrabold text-[#1e1e1e] leading-snug mb-6">
+        <h2 className="text-[32px] md:text-[45px] font-bold text-[#1e1e1e] leading-snug mb-6">
           Delivering digital solutions <br /> with precision and purpose.
         </h2>
 
-        <p className="text-lg md:text-xl text-[#666] mb-14 max-w-3xl">
+        <p className="text-sm md:text-[16px] text-[#969696] mb-14 max-w-3xl">
           From staff augmentation to complete product development, we help businesses of all sizes
           transform ideas into impactful digital experiences.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col md:flex-row gap-8">
           {/* Left Navigation Tabs */}
-          <div className="flex flex-col w-full md:w-1/3 space-y-4">
+          <div className="flex flex-col w-full md:w-1/3 space-y-2">
             {services.map((item, index) => (
               <button
                 key={item.title}
                 onClick={() => setActiveIndex(index)}
-                className={`text-left px-6 py-4 rounded-md border text-base font-semibold transition-all duration-300 ${
+                className={`text-left px-6 py-4 rounded-md border text-xs md:text-[16px] font-normal transition-all duration-300 ${
                   index === activeIndex
                     ? "bg-gradient-to-r from-[#ff4a4a] to-[#3c3f94] text-white shadow-lg"
                     : "bg-white text-[#1e1e1e] border-gray-300 hover:border-[#3c3f94] hover:bg-[#f4f6fa]"
@@ -79,10 +79,10 @@ export default function Technology() {
             transition={{ duration: 0.4 }}
             className="bg-white p-10 rounded-xl w-full md:w-2/3 border border-gray-200 shadow-md"
           >
-            <h3 className="text-2xl font-bold text-[#1e1e1e] mb-4">
+            <h3 className="text-xl font-bold text-[#1e1e1e] mb-4">
               {services[activeIndex].title}
             </h3>
-            <p className="text-lg leading-7 text-[#555]">
+            <p className="text-[16px] leading-7 text-[#969696]">
               {services[activeIndex].description}
             </p>
           </motion.div>

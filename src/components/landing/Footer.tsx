@@ -1,99 +1,74 @@
-"use client"
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { FaFacebookF, FaLinkedinIn, FaXTwitter, FaInstagram } from "react-icons/fa6";
+"use client";
+import { FaFacebookF, FaLinkedinIn, FaXTwitter, FaInstagram, FaPinterestP } from "react-icons/fa6";
 
-function Footer() {
-  const [show, setShow] = useState(false);
-  const [hovering, setHovering] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 200);
-    return () => clearTimeout(timer);
-  }, []);
-
+const Footer = () => {
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 30 }}
-      animate={show ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`transition-colors duration-300 ${
-        hovering ? "bg-black" : "bg-blue-600"
-      } text-white px-6 py-10 md:px-16`}
-    >
-      {/* Say Hello Button */}
-      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center mb-8">
-        <a
-          href="/contact"
-          className="text-center group"
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
-        >
-          <p className="py-4 text-6xl font-bold text-white group-hover:underline hover:text-[#32fcfc]">
-            Atvantiqs<span className="ml-1">.</span>
+    <footer className="bg-gray-50 text-gray-700">
+      <div className="max-w-screen-xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+        {/* Logo and Description */}
+        <div>
+          <h2 className="text-2xl font-bold">
+            <span className="text-blue-700">Atvan</span>
+            <span className="text-red-500">tiqs</span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-gray-500">
+            Far far away, behind the word mountains, far from the countries Vokalia and
+            Consonantia, there live the blind texts.
           </p>
-        </a>
-      </div>
-
-      {/* Subfooter */}
-      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/10 pt-6">
-        {/* Locations and Email */}
-        <div className="flex flex-col md:flex-row gap-4 items-center text-sm">
-          <a href="/contact" className="hover:underline">
-            San Francisco
-          </a>
-          <a href="/contact" className="hover:underline">
-            Florianopolis
-          </a>
-          <a href="mailto:info@cheesecakelabs.com" className="hover:underline">
-            info@atvantiqs.com
-          </a>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex gap-4 text-white text-xl">
-          <a
-            href="https://www.facebook.com/cheesecakelabs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-300 transition"
-          >
-            <FaFacebookF />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/cheesecake-labs/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-300 transition"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://x.com/cheesecakelabs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-300 transition"
-          >
-            <FaXTwitter />
-          </a>
-          <a
-            href="https://www.instagram.com/cheesecakelabs/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-300 transition"
-          >
-            <FaInstagram />
-          </a>
+        {/* Contact Us */}
+        <div>
+          <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
+          <ul className="text-sm space-y-1">
+            <li>Box 3233</li>
+            <li>1810 Kings Way</li>
+            <li>King Street, 5th Avenue, New York</li>
+            <li className="text-blue-600 mt-2">+1-2355-3345-5</li>
+            <li>
+              <a href="mailto:Contact@Attornasite.co" className="text-blue-600 hover:underline">
+                Contact@Attornasite.co
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Hot Links */}
+        <div>
+          <h3 className="font-semibold text-lg mb-4">Hot Links</h3>
+          <ul className="text-sm space-y-2 text-gray-600">
+            <li><a href="#" className="hover:underline">Frequently Asked Questions</a></li>
+            <li><a href="#" className="hover:underline">Story About Us</a></li>
+            <li><a href="#" className="hover:underline">Our Works</a></li>
+            <li><a href="#" className="hover:underline">Services We Provided</a></li>
+          </ul>
+        </div>
+
+        {/* Social Media */}
+        <div>
+          <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+          <div className="flex space-x-4 text-xl text-black">
+            <a href="#" className="hover:text-purple-500"><FaFacebookF /></a>
+            <a href="#" className="hover:text-purple-500"><FaXTwitter /></a>
+            <a href="#" className="hover:text-purple-500"><FaLinkedinIn /></a>
+            <a href="#" className="hover:text-purple-500"><FaPinterestP /></a>
+            <a href="#" className="hover:text-purple-500"><FaInstagram /></a>
+          </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="mt-6 text-center text-sm text-white/70">
-        &copy; {new Date().getFullYear()} Atvantiqs. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-200 bg-gray-100 py-4 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center px-6">
+        <p>&copy; {new Date().getFullYear()} , GoodLayers. All Right Reserved.</p>
+        <div className="flex space-x-4 mt-2 md:mt-0">
+          <a href="#" className="hover:underline">Home</a>
+          <a href="#" className="hover:underline">About</a>
+          <a href="#" className="hover:underline">News</a>
+          <a href="#" className="hover:underline">Contact</a>
+        </div>
       </div>
-    </motion.footer>
+    </footer>
   );
-}
-
+};
 
 export default Footer;

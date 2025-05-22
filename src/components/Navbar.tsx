@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 interface MenuItem {
   title: string;
@@ -18,6 +19,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
+  const [hoveredLink, setHoveredLink] = useState<number | null>(null);
+  const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pathname = usePathname();
 
@@ -42,6 +47,7 @@ const Navbar = () => {
     setIsOpen(false);
     setActiveDropdown(null);
     setActiveMobileDropdown(null);
+    setHoveredLink(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -62,6 +68,48 @@ const Navbar = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const navElement = navRef.current;
+    if (!navElement) return;
+
+    const mouseX = e.clientX;
+
+    let newHoveredLink: number | null = null;
+
+    for (let i = 0; i < linkRefs.current.length; i++) {
+      const link = linkRefs.current[i];
+      if (link) {
+        const rect = link.getBoundingClientRect();
+        const buffer = 4; // tolerance buffer on either side
+
+        if (
+          mouseX >= rect.left - buffer &&
+          mouseX <= rect.right + buffer
+        ) {
+          newHoveredLink = i;
+          break;
+        }
+      }
+    }
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setHoveredLink(newHoveredLink);
+    }, 30); // faster update
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setHoveredLink(null);
+    }, 50);
+  };
+
   return (
     <header className="bg-white fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,30 +117,45 @@ const Navbar = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img className="h-8 w-auto" src="/logo.png" alt="Logo" />
+                <img className="h-12 w-auto" src="/logo.png" alt="Logo" />
               </Link>
             </div>
           </div>
           <div className="flex items-center">
-            <div className="hidden md:flex md:space-x-8">
-              {menuItems.map((item) =>
+            <div
+              className="hidden md:flex md:space-x-8 relative"
+              ref={navRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              {menuItems.map((item, index) =>
                 !item.hasDropdown ? (
-                  <Link
+                  <div
                     key={item.title}
-                    href={item.path}
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:border-indigo-500 hover:text-gray-900"
+                    ref={(el) => {
+                      linkRefs.current[index] = el;
+                    }}
+                    className="relative flex items-center"
                   >
-                    {item.title}
-                  </Link>
+                    <Link
+                      href={item.path}
+                      className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors duration-150"
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
                 ) : (
                   <div
                     key={item.title}
+                    ref={(el) => {
+                      linkRefs.current[index] = el;
+                    }}
                     className="relative"
                     onMouseEnter={() => toggleDropdown(item.title)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     <button
-                      className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:border-indigo-500 hover:text-gray-900"
+                      className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-gray-900"
                       type="button"
                     >
                       {item.title}
@@ -128,9 +191,24 @@ const Navbar = () => {
                   </div>
                 )
               )}
+              {/* Sliding Dot */}
+              {hoveredLink !== null && linkRefs.current[hoveredLink] && (
+                <motion.div
+                  className="absolute -bottom-2 w-2 h-2 bg-[#3c3f94] rounded-full pointer-events-none"
+                  initial={false}
+                  animate={{
+                    x:
+                      linkRefs.current[hoveredLink]!.offsetLeft +
+                      linkRefs.current[hoveredLink]!.offsetWidth / 2 -
+                      6,
+                    opacity: 1,
+                  }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              )}
             </div>
             <div className="hidden md:flex">
-              <button className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+              <button className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#3c3f94] hover:bg-[#3c3f94ca]">
                 Schedule a Call
               </button>
             </div>
@@ -163,7 +241,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.path}
-                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-700"
+                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-[#3c3f94] hover:text-[#3c3f94ca]"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.title}
@@ -172,7 +250,7 @@ const Navbar = () => {
                 <div key={item.title} className="space-y-1">
                   <button
                     onClick={() => toggleMobileDropdown(item.title)}
-                    className="w-full flex items-center justify-between pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-700"
+                    className="w-full flex items-center justify-between pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-[#3c3f94] hover:text-[#3c3f94ca]"
                   >
                     {item.title}
                     <svg
@@ -195,7 +273,7 @@ const Navbar = () => {
                         <Link
                           key={dropdownItem.title}
                           href={dropdownItem.path}
-                          className="block pl-6 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-700"
+                          className="block pl-6 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-700 hover:bg-gray-50 hover:border-[#3c3f94] hover:text-[#3c3f94ca]"
                           onClick={() => setIsOpen(false)}
                         >
                           {dropdownItem.title}

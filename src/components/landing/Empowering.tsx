@@ -104,7 +104,7 @@ const Empower = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-sm tracking-widest text-[#999] font-semibold uppercase mb-3"
+            className="text-[13px] tracking-widest text-[#BFBFBF] font-bold uppercase mb-3"
           >
             Empower Through Technology
           </motion.p>
@@ -114,10 +114,10 @@ const Empower = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-[#2a2a2a] leading-tight mb-6"
+            className="text-2xl md:text-4xl font-bold text-[#2a2a2a] leading-tight mb-6"
           >
             We help startups <br />
-            scale into powerful <span className="text-[#ff4a4a]">enterprises</span>
+            scale into powerful <span className="text-[#ff5443]">enterprises</span>
           </motion.h2>
 
           {/* Checkpoints */}
@@ -129,7 +129,7 @@ const Empower = () => {
             className="space-y-4 mb-8"
           >
             {highlights.map((item, idx) => (
-              <li key={idx} className="flex items-center gap-3 text-lg text-[#444]">
+              <li key={idx} className="flex items-center gap-3 text[16px] text-[#353535]">
                 <FaCheckCircle className="text-[#ff4a4a]" />
                 {item}
               </li>
@@ -141,7 +141,7 @@ const Empower = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-[#666] text-lg leading-relaxed mb-6"
+            className="text-[#969696] text-[15px] leading-relaxed mb-6"
           >
             From idea to execution, we partner with you to deliver scalable apps, impactful digital
             experiences, and lasting technology transformations.
@@ -154,7 +154,7 @@ const Empower = () => {
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
           >
-            <button className="bg-[#3c3f94] hover:bg-[#2a2d7a] text-white px-6 py-3 text-lg rounded-md shadow-md transition duration-300">
+            <button className="bg-[#3c3f94] hover:bg-[#2a2d7a] text-white px-4 py-2 text-[16px] rounded-md shadow-md transition duration-300">
               Let’s Build Something
             </button>
           </motion.a>

@@ -21,9 +21,9 @@ const HowSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-[40px] lg:text-[60px] font-semibold font-poppins transform-none lg:-rotate-90 lg:translate-x-[-100%] origin-top-left whitespace-nowrap text-black"
+            className="text-[20px] lg:text-[38px] font-semibold font-poppins transform-none lg:-rotate-90 lg:translate-x-[-100%] origin-top-left whitespace-nowrap text-[#6b6b6b]"
           >
-            How<span className="text-blue-600">?</span>
+            How<span className="text-[#364292]">?</span>
           </motion.h2>
         </div>
 
@@ -38,9 +38,9 @@ const HowSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="text-[40px] text-black lg:text-[60px] font-light border-b border-blue-600 pb-4 mb-4 flex flex-col lg:flex-row hover:text-blue-600 hover:font-bold"
+                className="text-[20px] text-[#6b6b6b] lg:text-[38px] font-light border-b border-[#364292] pb-4 mb-4 flex flex-col lg:flex-row hover:text-[#364292] hover:font-bold"
               >
-                <span className=" font-normal text-blue-600">
+                <span className=" font-normal text-[#364292]">
                   0{index + 1}
                 </span>
                 {service}
