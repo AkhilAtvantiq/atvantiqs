@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
@@ -117,7 +118,7 @@ const Navbar = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img className="h-12 w-auto" src="/logo.png" alt="Logo" />
+                <Image className="h-12 w-auto" src="/logo.png" alt="Logo" width={120} height={48} priority />
               </Link>
             </div>
           </div>

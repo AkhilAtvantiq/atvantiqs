@@ -178,7 +178,13 @@ const ServicesPage = () => {
                 viewport={{ once: true }}
                 className="bg-gray-800/50 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-blue-500/50 transition-all duration-300"
               >
-                <img src={service.icon} alt={service.title} className="h-12 mb-4 mx-auto" />
+                <Image
+                  src={service.icon}
+                  alt={service.title}
+                  width={48}
+                  height={48}
+                  className="h-12 mb-4 mx-auto"
+                />
                 <h3 className="text-xl font-semibold text-white mb-2 text-center">{service.title}</h3>
                 <div className="relative w-full h-48 mb-4">
                   <Image
@@ -298,7 +304,7 @@ const ServicesPage = () => {
                   <div className="absolute -top-4 -left-4 text-6xl text-blue-400 opacity-30">
                     “
                   </div>
-                  <p className="text-gray-200 text-lg italic mb-4">"{testi.quote}"</p>
+                  <p className="text-gray-200 text-lg italic mb-4">&quot;{testi.quote}&quot;</p>
                   <div className="mt-4">
                     <p className="font-semibold text-white">{testi.name}</p>
                     <p className="text-gray-400 text-sm">{testi.role}</p>

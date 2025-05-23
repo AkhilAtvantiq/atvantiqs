@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 type Brand = {
   id: number;
@@ -43,7 +44,7 @@ const Brandsection = () => {
 
       {/* Main Heading */}
       <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-[#333a61] max-w-3xl mx-auto leading-relaxed z-10 relative">
-        Far far away, behind the word mountains, far from the <br/> countries Vokalia and
+        Far far away, behind the word mountains, far from the <br /> countries Vokalia and
         Consonantia, there live the blind texts.
       </h2>
 
@@ -54,9 +55,11 @@ const Brandsection = () => {
             key={client.id}
             className="grayscale opacity-80 hover:opacity-100 transition-opacity duration-300"
           >
-            <img
+            <Image
               src={client.img}
               alt={client.alt}
+              width={140}
+              height={48}
               className="h-12 object-contain max-w-[140px]"
             />
           </div>
