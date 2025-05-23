@@ -113,12 +113,12 @@ const Navbar = () => {
 
   return (
     <header className="bg-white fixed top-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
         <div className="flex justify-between h-20">
           <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
+            <div className="flex-shrink-0 flex items-center justify-start -ml-6">
               <Link href="/">
-                <Image className="h-12 w-auto" src="/logo.png" alt="Logo" width={120} height={48} priority />
+                <Image className="h-11 w-auto" src="/logo.png" alt="Logo" width={120} height={48} priority />
               </Link>
             </div>
           </div>

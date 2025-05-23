@@ -10,29 +10,34 @@ type ServiceItem = {
 
 const services: ServiceItem[] = [
   {
-    title: "Custom Software Development",
+    title: "AI Revolution Forge",
     description:
-      "We design and build powerful, scalable software tailored to your business needs — from MVPs to robust enterprise-grade systems.",
+      "Ignite your business with AI and machine learning wizardry. From predictive analytics to intelligent automation, we build solutions that outsmart the competition.",
   },
   {
-    title: "Android App Development",
+    title: "Web Alchemy Studio",
     description:
-      "Create modern, high-performance Android apps that deliver exceptional user experiences. From concept to launch, we handle the full development lifecycle.",
+      "Transform clicks into experiences with stunning, high-octane websites. Our designs are bold, responsive, and engineered to make your brand unforgettable.",
   },
   {
-    title: "UX/UI Design",
+    title: "Mobile Maverick Lab",
     description:
-      "We design elegant, user-first interfaces that are both functional and visually stunning — built to engage and convert.",
+      "Conquer the mobile frontier with apps that captivate and perform. We craft iOS and Android experiences that keep users hooked and your business thriving.",
   },
   {
-    title: "DevOps & Cloud Engineering",
+    title: "UI/UX Dream Forge",
     description:
-      "Streamline your development pipeline and scale with confidence. We set up CI/CD workflows, automate infrastructure, and manage deployments on AWS, Azure, or GCP.",
+      "Sculpt interfaces that mesmerize and flows that feel like magic. Our designs blend beauty and brains to keep your users coming back for more.",
   },
   {
-    title: "Staff Augmentation",
+    title: "Solar Power Nexus",
     description:
-      "Boost your existing team with our vetted software engineers, designers, and DevOps professionals. Scale rapidly and meet deadlines without compromising quality.",
+      "Harness the sun’s energy with cutting-edge solar tech. We deliver sustainable solutions that power your business and light up the future.",
+  },
+  {
+    title: "Talent Turbocharge",
+    description:
+      "Supercharge your team with our elite developers and designers. Our staff augmentation fuels your projects with the firepower to hit deadlines and crush goals.",
   },
 ];
 
@@ -49,7 +54,7 @@ export default function Technology() {
         </h2>
 
         <p className="text-sm md:text-[16px] text-[#969696] mb-14 max-w-3xl">
-          From staff augmentation to complete product development, we help businesses of all sizes
+          From talent turbocharge to complete AI revolution forge, we help businesses of all sizes
           transform ideas into impactful digital experiences.
         </p>
 
@@ -60,7 +65,7 @@ export default function Technology() {
               <button
                 key={item.title}
                 onClick={() => setActiveIndex(index)}
-                className={`text-left px-6 py-4 rounded-md border text-xs md:text-[16px] font-normal transition-all duration-300 ${
+                className={`text-left px-6 py-3 rounded-md border text-xs md:text-[16px] font-normal transition-all duration-300 ${
                   index === activeIndex
                     ? "bg-gradient-to-r from-[#ff4a4a] to-[#3c3f94] text-white shadow-lg"
                     : "bg-white text-[#1e1e1e] border-gray-300 hover:border-[#3c3f94] hover:bg-[#f4f6fa]"

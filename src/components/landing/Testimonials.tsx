@@ -141,7 +141,7 @@ const Testimonials = () => {
               >
                 <motion.div
                   variants={cardVariants}
-                  className="bg-gray-100 p-8 rounded-xl shadow-lg hover:shadow-[#2e5bff]/20 hover:bg-grey-400 transition-shadow border border-gray-200 h-full"
+                  className="bg-gray-100 p-8 rounded-xl shadow-lg hover:shadow-[#2e5bff]/20 hover:bg-grey-400 transition-shadow border border-gray-200 "
                 >
                   <div className="absolute -top-4 -left-4 text-6xl text-[#3c3f94] opacity-30">“</div>
                   <p className="text-base md:text-lg text-[#8c8c8c] font-normal italic mb-6 leading-relaxed font-poppins">

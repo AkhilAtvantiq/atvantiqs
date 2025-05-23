@@ -5,9 +5,9 @@ import Image from "next/image";
 import { FaCheckCircle } from "react-icons/fa";
 
 const highlights = [
-  "Expert Software Engineers",
-  "Tailored Digital Solutions",
-  "End-to-End Project Ownership",
+  "AI-Powered Software Solutions",
+  "Smart Automation & Decision Systems",
+  "End-to-End AI Integration",
 ];
 
 const Empower = () => {
@@ -37,29 +37,29 @@ const Empower = () => {
 
           {/* Images */}
           <motion.div
-            className="relative w-[60%] rounded-xl overflow-hidden shadow-lg z-10"
+            className="relative bottom-[40px] left-[0px] w-[280px] w-[60%] rounded-xl overflow-hidden z-0"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
             <Image
               src="/profile/employee.png"
               alt="Professional working on software development"
-              width={400}
-              height={200}
+              width={300}
+              height={300}
               className="rounded-xl object-cover"
             />
           </motion.div>
 
           <motion.div
-            className="absolute bottom-[-40px] left-[40px] w-[280px] rounded-xl overflow-hidden shadow-md z-0"
+            className="absolute bottom-[-65px] left-[170px] w-[280px] rounded-xl overflow-hidden shadow-md z-10"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
             <Image
-              src="/profile/team.png"
+              src="/profile/group.jpg"
               alt="Team collaborating on a project"
-              width={300}
-              height={200}
+              width={600}
+              height={300}
               className="rounded-xl object-cover"
             />
           </motion.div>
@@ -106,7 +106,7 @@ const Empower = () => {
             viewport={{ once: true }}
             className="text-[13px] tracking-widest text-[#BFBFBF] font-bold uppercase mb-3"
           >
-            Empower Through Technology
+            AI-Driven Innovation
           </motion.p>
 
           <motion.h2
@@ -116,8 +116,8 @@ const Empower = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-4xl font-bold text-[#2a2a2a] leading-tight mb-6"
           >
-            We help startups <br />
-            scale into powerful <span className="text-[#ff5443]">enterprises</span>
+             We help startups <br />
+  scale with <span className="text-[#ff5443]">AI-driven intelligence</span>
           </motion.h2>
 
           {/* Checkpoints */}
@@ -143,8 +143,8 @@ const Empower = () => {
             viewport={{ once: true }}
             className="text-[#969696] text-[15px] leading-relaxed mb-6"
           >
-            From idea to execution, we partner with you to deliver scalable apps, impactful digital
-            experiences, and lasting technology transformations.
+            From intelligent automation to predictive analytics, we leverage cutting-edge AI to turn ideas
+  into scalable platforms, deliver intuitive user experiences, and transform digital capabilities.
           </motion.p>
 
           <motion.a

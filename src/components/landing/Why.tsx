@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    title: "Innovative Design Thinking",
+    title: "AI & ML Leadership",
     description:
-      "We fuse creativity with functionality, crafting modern UI/UX that delights and converts.",
+      "We’re pioneers in AI and Machine Learning, crafting solutions that predict trends, automate processes, and drive smarter decision-making for your business.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -16,20 +16,14 @@ const features = [
             <stop offset="100%" stopColor="#6e33ff" />
           </linearGradient>
         </defs>
-        <path
-          d="M32 2C19 2 8 13 8 26c0 11 9 20 20 20s20-9 20-20C48 13 45 6 32 2z"
-          stroke="url(#grad1)"
-          strokeWidth="3"
-          fill="none"
-        />
-        <circle cx="32" cy="26" r="4" fill="url(#grad1)" />
+        <path d="M32 4v56M4 32h56" stroke="url(#grad1)" strokeWidth="4" />
       </svg>
     ),
   },
   {
-    title: "Scalable Architecture",
+    title: "Telecom Enhanced by AI",
     description:
-      "We build scalable, future-ready solutions tailored to your business goals and growth.",
+      "Our telecom solutions integrate AI for smarter networks, ensuring seamless connectivity and optimized performance for your operations.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -39,7 +33,7 @@ const features = [
           </linearGradient>
         </defs>
         <path
-          d="M16 48V24h32v24M8 56h48v-8H8v8z"
+          d="M12 32a20 20 0 0 1 40 0M20 32a12 12 0 0 1 24 0M28 32a4 4 0 0 1 8 0"
           stroke="url(#grad2)"
           strokeWidth="3"
           fill="none"
@@ -48,9 +42,9 @@ const features = [
     ),
   },
   {
-    title: "Dedicated Teams",
+    title: "AI-Driven Solar Systems",
     description:
-      "A highly skilled, cross-functional team working exclusively on your project.",
+      "We leverage AI to optimize solar energy systems, delivering sustainable power solutions that maximize efficiency and reduce costs.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -59,10 +53,9 @@ const features = [
             <stop offset="100%" stopColor="#6e33ff" />
           </linearGradient>
         </defs>
-        <circle cx="20" cy="20" r="6" stroke="url(#grad3)" strokeWidth="3" fill="none" />
-        <circle cx="44" cy="20" r="6" stroke="url(#grad3)" strokeWidth="3" fill="none" />
+        <circle cx="32" cy="32" r="10" stroke="url(#grad3)" strokeWidth="3" />
         <path
-          d="M10 46c0-6 4-10 10-10s10 4 10 10M34 46c0-6 4-10 10-10s10 4 10 10"
+          d="M32 2v10M32 52v10M2 32h10M52 32h10M12 12l7 7M45 45l7 7M12 52l7-7M45 19l7-7"
           stroke="url(#grad3)"
           strokeWidth="3"
         />
@@ -70,9 +63,9 @@ const features = [
     ),
   },
   {
-    title: "Agile Development",
+    title: "Staffing with Precision",
     description:
-      "Iterative and collaborative development process with transparent delivery cycles.",
+      "Using AI-driven insights, we match you with top talent, ensuring your team is equipped to tackle any challenge with precision.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -81,8 +74,9 @@ const features = [
             <stop offset="100%" stopColor="#6e33ff" />
           </linearGradient>
         </defs>
+        <circle cx="32" cy="20" r="6" stroke="url(#grad4)" strokeWidth="3" fill="none" />
         <path
-          d="M48 24a16 16 0 1 0-28 12l-4 4h10v-10l-3 3a12 12 0 1 1 17-1"
+          d="M16 48c0-8 8-12 16-12s16 4 16 12"
           stroke="url(#grad4)"
           strokeWidth="3"
           fill="none"
@@ -91,9 +85,9 @@ const features = [
     ),
   },
   {
-    title: "Client-Centric Focus",
+    title: "Software Powered by AI",
     description:
-      "We deeply engage with your vision and feedback to ensure aligned and impactful outcomes.",
+      "Our software solutions harness AI to deliver intelligent, scalable systems that streamline operations and fuel your growth.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -102,19 +96,15 @@ const features = [
             <stop offset="100%" stopColor="#6e33ff" />
           </linearGradient>
         </defs>
-        <path
-          d="M32 4C20 4 12 14 12 26c0 16 20 30 20 30s20-14 20-30c0-12-8-22-20-22z"
-          stroke="url(#grad5)"
-          strokeWidth="3"
-          fill="none"
-        />
+        <rect x="10" y="14" width="44" height="36" rx="4" stroke="url(#grad5)" strokeWidth="3" />
+        <path d="M10 26h44" stroke="url(#grad5)" strokeWidth="3" />
       </svg>
     ),
   },
   {
-    title: "Full-stack Expertise",
+    title: "Web Solutions with AI Edge",
     description:
-      "From backend systems to sleek frontends — our team covers the complete product stack.",
+      "We integrate AI into web development, creating smart, responsive sites that enhance user engagement and online dominance.",
     icon: (
       <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
         <defs>
@@ -123,27 +113,16 @@ const features = [
             <stop offset="100%" stopColor="#6e33ff" />
           </linearGradient>
         </defs>
-        <rect
-          x="8"
-          y="8"
-          width="48"
-          height="20"
-          rx="3"
+        <circle cx="32" cy="32" r="28" stroke="url(#grad6)" strokeWidth="3" />
+        <path
+          d="M12 32h40M32 12v40M18 18l28 28M46 18L18 46"
           stroke="url(#grad6)"
-          strokeWidth="3"
-        />
-        <rect
-          x="8"
-          y="36"
-          width="48"
-          height="20"
-          rx="3"
-          stroke="url(#grad6)"
-          strokeWidth="3"
+          strokeWidth="2"
         />
       </svg>
     ),
   },
+  
 ];
 
 const Why = () => {
