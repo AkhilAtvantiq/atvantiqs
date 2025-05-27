@@ -1,23 +1,86 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 
-type Brand = {
-  id: number;
-  img: string;
-  alt: string;
-};
+const counters = [
+  {
+    icon: (
+      <svg
+        className="w-8 h-8 text-[#ff5443]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9 12l2 2 4-4M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    number: 30,
+    label: "Completed Projects",
+  },
+  {
+    icon: (
+      <svg
+        className="w-8 h-8 text-[#ff5443]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4 4v16h16V4H4zm2 2h12v12H6V6zm3 10h6v2H9v-2z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    number: 100,
+    label: "Resources Deployed",
+  },
+  {
+    icon: (
+      <svg
+        className="w-8 h-8 text-[#ff5443]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    number: 10,
+    label: "Worldwide Clients",
+  },
+  {
+    icon: (
+      <svg
+        className="w-8 h-8 text-[#ff5443]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7l3-7z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    number: 15,
+    label: "Years in Industry",
+  },
+];
 
 const Brandsection = () => {
-  const clients: Brand[] = [
-    { id: 1, img: "/clients/jio.png", alt: "Jio" },
-    { id: 2, img: "/clients/ceragon.png", alt: "Ceragon" },
-    { id: 3, img: "/clients/erricson.png", alt: "Erricson" },
-    { id: 4, img: "/clients/tata.png", alt: "Tata Communications" },
-    { id: 5, img: "/clients/nokia.png", alt: "Nokia" },
-    { id: 6, img: "/clients/hfcl.png", alt: "HFCL Group" },
-  ];
-
   return (
     <section className="relative bg-white py-24 text-center overflow-hidden">
       {/* Top-right curved SVG background */}
@@ -44,24 +107,24 @@ const Brandsection = () => {
 
       {/* Main Heading */}
       <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-[#333a61] max-w-3xl mx-auto leading-relaxed z-10 relative">
-        Far far away, behind the word mountains, far from the <br /> countries Vokalia and
-        Consonantia, there live the blind texts.
+        Far far away, behind the word mountains, far from the <br /> countries
+        Vokalia and Consonantia, there live the blind texts.
       </h2>
 
-      {/* Logo List */}
-      <div className="mt-12 flex flex-wrap justify-center items-center gap-x-10 gap-y-8 px-6 relative z-10">
-        {clients.map((client) => (
+      {/* Counter Cards */}
+      <div className="mt-16 flex flex-wrap justify-center items-start gap-6 px-6 relative z-10">
+        {counters.map((item, index) => (
           <div
-            key={client.id}
-            className="grayscale opacity-80 hover:opacity-100 transition-opacity duration-300"
+            key={index}
+            className="w-full sm:w-[240px] p-6 border border-[#e2e2e2] rounded-xl shadow-sm hover:shadow-md transition duration-300 bg-white"
           >
-            <Image
-              src={client.img}
-              alt={client.alt}
-              width={140}
-              height={48}
-              className="h-12 object-contain max-w-[140px]"
-            />
+            <div className="mb-3 flex justify-center">{item.icon}</div>
+            <div className="text-[#333a61] text-[28px] font-bold leading-tight">
+              {item.number}+
+            </div>
+            <div className="text-[#333a61] text-[15px] font-light mt-1">
+              {item.label}
+            </div>
           </div>
         ))}
       </div>

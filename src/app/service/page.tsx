@@ -1,370 +1,306 @@
-"use client";
+// ServicesPage.jsx
 
-import React from "react";
-import Image from "next/image";
-import { motion, Variants } from "framer-motion";
-import Tilt from "react-parallax-tilt";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-
-// Animation variants
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+import Footer from '@/components/landing/Footer';
+import Navbar from '@/components/Navbar';
+import React from 'react';
 
 const services = [
   {
-    title: "Custom Software Development",
-    image: "/images/software-development.jpg",
-    content:
-      "We design and build scalable custom software tailored to your business needs. From internal platforms to client-facing apps, our agile process ensures flexibility and quality throughout the development lifecycle.",
-    icon: "/icons/software-development.svg",
+    id: 'solar',
+    title: 'Solar Power Nexus',
+    description: [
+      'Harness the power of the sun with Atvantiq Networks – delivering cutting-edge solar solutions for homes, businesses, and beyond.',
+      'Our end-to-end services include design, installation, and optimization, ensuring you get the most out of every ray of sunlight.',
+      'From urban rooftops to rural landscapes, we empower communities and industries alike with reliable, cost-effective solar power.',
+    ],
+    points: [
+      'Innovative high-efficiency panels & smart storage',
+      'Customized solar systems for homes & businesses',
+      'Sustainability and ROI driven approach',
+      'Ongoing monitoring & performance optimization',
+    ],
+    video: '/assets/video/solar-home-video.mp4',
+    poster: '/assets/img/solar-home-video.webp',
   },
   {
-    title: "Mobile App Development",
-    image: "/images/mobile-app.jpg",
-    content:
-      "Whether it's iOS, Android, or cross-platform, our team crafts engaging mobile experiences that are performant, secure, and user-focused.",
-    icon: "/icons/mobile-app.svg",
+    id: 'ai',
+    title: 'AI Revolution Forge',
+    description: [
+      'Unlock business intelligence and automation with cutting-edge AI solutions tailored to your industry.',
+      'Our machine learning models, NLP engines, and analytics systems are built for impact—from predictive systems to generative innovation.',
+    ],
+    points: [
+      'Custom ML & predictive models',
+      'Generative AI for automation & creativity',
+      'AI-powered dashboards and analytics',
+      'Scalable AI architecture & APIs',
+    ],
+    image: '/assets/img/services/ai.webp',
   },
   {
-    title: "Web Application Development",
-    image: "/images/web-development.jpg",
-    content:
-      "Our web applications are designed with performance and scalability in mind. From dashboards to SaaS platforms, we bring your vision to life using modern frameworks.",
-    icon: "/icons/web-development.svg",
+    id: 'web',
+    title: 'Web Alchemy Studio',
+    description: [
+      'Turn your online presence into a performance powerhouse. We design and develop web platforms that not only look good—but convert and scale.',
+      'Every pixel is purposeful, and every interaction is crafted to leave a lasting impact.',
+    ],
+    points: [
+      'Bold, responsive web design',
+      'Performance-optimized development',
+      'CMS and headless solutions',
+      'Web apps with complex logic and integrations',
+    ],
+    image: '/assets/img/services/web.webp',
   },
   {
-    title: "UI/UX Design",
-    image: "/images/ui-ux.jpg",
-    content:
-      "Our design team delivers intuitive interfaces that align with your brand and enhance the user journey. Every pixel is placed with purpose to drive engagement.",
-    icon: "/icons/ui-ux.svg",
+    id: 'mobile',
+    title: 'Mobile Maverick Lab',
+    description: [
+      'From startups to enterprises, we build iOS and Android apps that feel fast, smooth, and are built for real-world scalability.',
+      'Our mobile-first approach ensures your product is usable and lovable from the first tap.',
+    ],
+    points: [
+      'Native & cross-platform apps (Flutter, React Native)',
+      'Scalable architecture and CI/CD-ready',
+      'UX-optimized interactions and flows',
+      'App Store & Play Store launch support',
+    ],
+    image: '/assets/img/services/mobile.webp',
   },
   {
-    title: "Cloud & DevOps",
-    image: "/images/devops.jpg",
-    content:
-      "We streamline your operations with scalable cloud infrastructure, CI/CD pipelines, and automated monitoring systems to ensure reliability and uptime.",
-    icon: "/icons/devops.svg",
+    id: 'uiux',
+    title: 'UI/UX Dream Forge',
+    description: [
+      'Design is the soul of your product. We bring it to life with research-driven design that feels effortless and intuitive.',
+      'From wireframes to high-fidelity prototypes, we shape journeys that delight users and meet business goals.',
+    ],
+    points: [
+      'Wireframing & user flows',
+      'High-fidelity Figma designs',
+      'Design systems and atomic components',
+      'Accessibility-first thinking',
+    ],
+    image: '/assets/img/services/uiux.webp',
+  },
+  {
+    id: 'telecom',
+    title: 'Telecom Trailblazer',
+    description: [
+      'We began in telecom—and we still lead the way. Our telecom engineering and implementation services build the backbone of modern connectivity.',
+      'From RF planning to network optimization, we keep your systems running efficiently.',
+    ],
+    points: [
+      'Network design & rollout services',
+      'Tower infrastructure deployment',
+      'Network optimization & audits',
+      'Telecom resource management',
+    ],
+    image: '/assets/img/services/telecom.webp',
+  },
+  {
+    id: 'talent',
+    title: 'Talent Turbocharge',
+    description: [
+      'Scale your projects without delay. We offer vetted developers, designers, and project managers who integrate with your workflow.',
+      'Our augmentation services are flexible, reliable, and result-driven.',
+    ],
+    points: [
+      'Quick onboarding of remote teams',
+      'Dedicated resource management',
+      'Flexible contract & billing models',
+      'Specialists in full-stack, cloud, DevOps & more',
+    ],
+    image: '/assets/img/services/talent.webp',
+  },
+  {
+    id: 'lighting',
+    title: 'Lighting Innovators',
+    description: [
+      'Illuminate your spaces with intelligent lighting systems designed for energy savings and user comfort.',
+      'We combine IoT and sustainable hardware to make every watt count.',
+    ],
+    points: [
+      'Smart lighting systems',
+      'Low-energy industrial solutions',
+      'Automated sensors & controls',
+      'Installation, monitoring & maintenance',
+    ],
+    image: '/assets/img/services/lighting.webp',
   },
 ];
 
-const testimonials = [
+const strengths = [
   {
-    name: "Ananya Sharma",
-    role: "Product Manager, Fintech Co.",
-    quote:
-      "Atvantiq's software team exceeded expectations. From ideation to deployment, they delivered with clarity, transparency, and precision.",
+    icon: (
+      <svg className="w-8 h-8 text-[#2e5bff]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M9.75 3a.75.75 0 00-1.5 0v1.25H7.25a.75.75 0 000 1.5H8.25v1.25a.75.75 0 001.5 0V5.75h1a.75.75 0 000-1.5h-1V3zM3.75 10.5A6.75 6.75 0 0117.25 10.5v6.75a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V10.5z" />
+      </svg>
+    ),
+    title: 'Next-Gen Innovations',
+    desc: 'We wield the latest tech stacks to ensure your solutions are lightning-fast, secure, and ready for the future.'
   },
   {
-    name: "James Carter",
-    role: "CTO, HealthTech Startup",
-    quote:
-      "We partnered with Atvantiq to build a HIPAA-compliant web platform. The attention to security and performance was outstanding.",
+    icon: (
+      <svg className="w-8 h-8 text-[#2e5bff]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M8 16l2-2-2-2M16 8l-2 2 2 2M3 12l3-3 3 3-3 3-3-3zM21 12l-3 3-3-3 3-3 3 3z" />
+      </svg>
+    ),
+    title: 'Flawless Execution',
+    desc: 'Our team delivers pristine, scalable code that stands the test of time—built to dominate the digital arena.'
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8 text-[#2e5bff]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    title: 'Rocket-Fast Delivery',
+    desc: 'Speed meets precision—our agile approach ensures your project launches at warp speed without cutting corners.'
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8 text-[#2e5bff]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M12 12v.01M17.656 6.344a8 8 0 11-11.312 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    title: 'Unbreakable Security',
+    desc: 'Fortify your digital presence with ironclad security measures that shield your business from every angle.'
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8 text-[#2e5bff]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M12 1a10 10 0 00-10 10v3a4 4 0 004 4h1v-7H6v-1a6 6 0 1112 0v1h-1v7h1a4 4 0 004-4v-3a10 10 0 00-10-10z" />
+</svg>
+
+    ),
+    title: 'Visionary Support',
+    desc: 'We’re your co-pilots for the long haul, providing stellar support to keep your solutions soaring high.'
   },
 ];
 
-const caseStudies = [
-  {
-    title: "Enterprise CRM Solution",
-    summary:
-      "We developed a scalable CRM used by 500+ sales agents across the globe, integrating it with marketing and support workflows.",
-    image: "/images/crm-case.jpg",
-    link: "/case-studies/enterprise-crm",
-  },
-  {
-    title: "Healthcare Appointment Platform",
-    summary:
-      "An AI-powered booking engine that connects patients and doctors in real time, reducing wait times by 60%.",
-    image: "/images/health-case.jpg",
-    link: "/case-studies/healthcare-appointment",
-  },
-];
 
-const WaveDivider = () => (
-  <svg className="w-full h-24 text-gray-900" viewBox="0 0 1440 100" fill="currentColor" preserveAspectRatio="none">
-    <path d="M0 50C200 80 400 20 600 50C800 80 1000 20 1200 50C1400 80 1440 50 1440 50V100H0V0Z" />
-  </svg>
-);
-
-const ServicesPage = () => {
+export default function ServicesPage() {
   return (
-    <div className="bg-gray-900 text-white font-poppins">
-      {/* Hero Section */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-blue-600 to-blue-400 text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full opacity-20 animate-pulse"
-            viewBox="0 0 1440 600"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+    <>
+      <Navbar />
+      <header className="relative bg-white py-24 text-center overflow-hidden">
+  {/* Background shape */}
+  <div className="absolute w-[800px] h-[750px] bg-[#fff5f2] rounded-full -top-120 -right-10 z-0"></div>
+
+  {/* Text content */}
+  <div className="relative z-10 py-10 pt-15">
+    <h1 className="text-5xl font-extrabold text-black mb-3">Our Services</h1>
+    <p className="uppercase text-sm font-semibold tracking-widest text-[#ff5443] max-w-2xl mx-auto">
+      From clean energy to cutting-edge tech,<br />
+      we deliver transformative solutions that scale, optimize, and inspire.
+    </p>
+  </div>
+</header>
+
+
+      <main className="bg-white text-gray-800">
+        {services.map((service, index) => (
+          <section
+            key={service.id}
+            id={service.id}
+            className={`py-24 px-4 md:px-12 ${
+              index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+            }`}
           >
-            <path
-              d="M0 300C200 400 400 200 600 300C800 400 1000 200 1200 300C1400 400 1440 300 1440 300V600H0V300Z"
-              fill="url(#gradient)"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0" y1="0" x2="1440" y2="600">
-                <stop offset="0%" stopColor="#0057FF" />
-                <stop offset="100%" stopColor="#00A3FF" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <motion.div
-          className="relative z-10 max-w-7xl mx-auto text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-          >
-            Our Software Development Services
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            className="text-lg text-gray-200 max-w-3xl mx-auto"
-          >
-            We help businesses launch, scale, and evolve through top-tier software, mobile apps, and cloud-first solutions.
-          </motion.p>
-          <motion.div variants={fadeUp} className="mt-8">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+              {/* Media */}
+              <div className={`w-full lg:w-1/2 ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                {service.video ? (
+                  <video
+                    className="w-full rounded-2xl shadow-xl"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster={service.poster}
+                  >
+                    <source src={service.video} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full rounded-2xl shadow-xl"
+                  />
+                )}
+              </div>
+
+              {/* Text */}
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-4xl font-extrabold text-[#2e5bff] mb-6 leading-tight">
+                  {service.title}
+                </h2>
+                <div className="space-y-4 text-gray-700 text-lg">
+                  {service.description.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+                <ul className="mt-6 pl-5 space-y-2 text-base text-gray-800 list-disc">
+                  {service.points.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        {/* CTA Section */}
+        <section className="bg-[#3c3f94] text-white text-center py-10 px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4">Ready to elevate your project?</h2>
+            <p className="mb-8 text-lg opacity-90">
+              Partner with Atvantiq Networks and experience the synergy of innovation, reliability, and expert execution.
+            </p>
             <a
               href="/contact"
-              className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-400 transition-all duration-300 shadow-blue-500/50 hover:shadow-lg"
+              className="inline-block bg-[#3c3f94] text-white border-2 border-white px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-gray-100 transition"
             >
               Get in Touch
             </a>
-          </motion.div>
-        </motion.div>
-      </section>
+          </div>
+        </section>
+        <section className="bg-white py-20 px-4 md:px-10 lg:px-20">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+        {/* Left Content */}
+        <div className="w-full lg:w-2/3">
+          <h2 className="text-4xl font-bold mb-4 text-gray-800">Our Core Strengths</h2>
+          <p className="text-lg text-gray-600 mb-10">
+            We combine cutting-edge technology with proven methodologies to deliver exceptional results across every project.
+          </p>
 
-      <WaveDivider />
-
-      {/* Service Sections */}
-      <section className="py-16 px-6 bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-400"
-          >
-            Our Services
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="bg-gray-800/50 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-blue-500/50 transition-all duration-300"
-              >
-                <Image
-                  src={service.icon}
-                  alt={service.title}
-                  width={48}
-                  height={48}
-                  className="h-12 mb-4 mx-auto"
-                />
-                <h3 className="text-xl font-semibold text-white mb-2 text-center">{service.title}</h3>
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-lg"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+            {strengths.map((item, index) => (
+              <div key={index} className="flex items-start gap-4">
+                <div className="shrink-0">
+                  {item.icon}
                 </div>
-                <p className="text-gray-200 text-center">{service.content}</p>
-              </motion.div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                  <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </section>
 
-      <WaveDivider />
-
-      {/* Why Choose Us */}
-      <section className="py-16 px-6 bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full opacity-10 animate-pulse"
-            viewBox="0 0 1440 600"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 300C200 400 400 200 600 300C800 400 1000 200 1200 300C1400 400 1440 300 1440 300V600H0V300Z"
-              fill="url(#gradient)"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0" y1="0" x2="1440" y2="600">
-                <stop offset="0%" stopColor="#0057FF" />
-                <stop offset="100%" stopColor="#00A3FF" />
-              </linearGradient>
-            </defs>
-          </svg>
+        {/* Right Image */}
+        <div className="w-full lg:w-1/3 flex justify-center">
+          <img
+            src="/core-strengths.png" // Replace with the actual image path
+            alt="Core Strengths"
+            className="max-w-xs md:max-w-sm lg:max-w-md"
+          />
         </div>
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-10 text-blue-400"
-          >
-            Why Choose Atvantiq?
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "Industry Expertise",
-                content: "Years of experience delivering solutions across Fintech, HealthTech, Retail, and more.",
-              },
-              {
-                title: "End-to-End Partnership",
-                content: "From discovery to post-launch, we stay involved to ensure ongoing success.",
-              },
-              {
-                title: "Agile Development",
-                content: "Quick iterations, fast feedback loops, and constant alignment with your goals.",
-              },
-            ].map((item, index) => (
-              <Tilt
-                key={index}
-                tiltMaxAngleX={10}
-                tiltMaxAngleY={10}
-                scale={1.05}
-                transitionSpeed={2000}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-800/50 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-blue-500/50 transition-all duration-300"
-                >
-                  <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-200">{item.content}</p>
-                </motion.div>
-              </Tilt>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <WaveDivider />
-
-      {/* Testimonials */}
-      <section className="py-16 px-6 bg-gray-900">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-10 text-blue-400"
-          >
-            Client Testimonials
-          </motion.h2>
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            loop={true}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-              768: { slidesPerView: 2 },
-            }}
-          >
-            {testimonials.map((testi, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="bg-gray-800/50 backdrop-blur-md p-6 rounded-xl shadow-md relative">
-                  <div className="absolute -top-4 -left-4 text-6xl text-blue-400 opacity-30">
-                    “
-                  </div>
-                  <p className="text-gray-200 text-lg italic mb-4">&quot;{testi.quote}&quot;</p>
-                  <div className="mt-4">
-                    <p className="font-semibold text-white">{testi.name}</p>
-                    <p className="text-gray-400 text-sm">{testi.role}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
-
-      <WaveDivider />
-
-      {/* Case Studies */}
-      <section className="py-16 px-6 bg-gray-900">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-10 text-blue-400"
-          >
-            Case Studies
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {caseStudies.map((caseItem, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="bg-gray-800/50 backdrop-blur-md p-6 rounded-lg relative overflow-hidden group"
-              >
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={caseItem.image}
-                    alt={caseItem.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{caseItem.title}</h3>
-                <p className="text-gray-200 mb-4">{caseItem.summary}</p>
-                <a
-                  href={caseItem.link}
-                  className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-400 transition-all duration-300"
-                >
-                  View Case Study
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
+      </main>
+      <Footer/>
+    </>
   );
-};
-
-export default ServicesPage;
+}

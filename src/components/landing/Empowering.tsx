@@ -37,7 +37,7 @@ const Empower = () => {
 
           {/* Images */}
           <motion.div
-            className="relative bottom-[40px] left-[0px] w-[280px] w-[60%] rounded-xl overflow-hidden z-0"
+            className="relative bottom-[40px] left-[0px] w-[280px] rounded-xl overflow-hidden z-0"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
@@ -144,7 +144,7 @@ const Empower = () => {
             className="text-[#969696] text-[15px] leading-relaxed mb-6"
           >
             From intelligent automation to predictive analytics, we leverage cutting-edge AI to turn ideas
-  into scalable platforms, deliver intuitive user experiences, and transform digital capabilities.
+  into scalable platforms, deliver intuitive user experiences, and transform digital capabilities.git add
           </motion.p>
 
           <motion.a

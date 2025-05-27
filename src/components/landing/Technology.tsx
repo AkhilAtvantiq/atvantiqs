@@ -50,12 +50,11 @@ export default function Technology() {
 
       <div className="relative z-10">
         <h2 className="text-[32px] md:text-[45px] font-bold text-[#1e1e1e] leading-snug mb-6">
-          Delivering digital solutions <br /> with precision and purpose.
+          Our Services: <br /> AI-Powered and Beyond 
         </h2>
 
         <p className="text-sm md:text-[16px] text-[#969696] mb-14 max-w-3xl">
-          From talent turbocharge to complete AI revolution forge, we help businesses of all sizes
-          transform ideas into impactful digital experiences.
+          At the heart of our offerings is AI and Machine Learning, but we also deliver exceptional solutions across diverse tech domains to support your growth.
         </p>
 
         <div className="flex flex-col md:flex-row gap-8">

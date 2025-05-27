@@ -21,6 +21,7 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const [hoveredLink, setHoveredLink] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
   const navRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -69,24 +70,28 @@ const Navbar = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const navElement = navRef.current;
     if (!navElement) return;
 
     const mouseX = e.clientX;
-
     let newHoveredLink: number | null = null;
 
     for (let i = 0; i < linkRefs.current.length; i++) {
       const link = linkRefs.current[i];
       if (link) {
         const rect = link.getBoundingClientRect();
-        const buffer = 4; // tolerance buffer on either side
-
-        if (
-          mouseX >= rect.left - buffer &&
-          mouseX <= rect.right + buffer
-        ) {
+        const buffer = 4;
+        if (mouseX >= rect.left - buffer && mouseX <= rect.right + buffer) {
           newHoveredLink = i;
           break;
         }
@@ -99,7 +104,7 @@ const Navbar = () => {
 
     timeoutRef.current = setTimeout(() => {
       setHoveredLink(newHoveredLink);
-    }, 30); // faster update
+    }, 30);
   };
 
   const handleMouseLeave = () => {
@@ -112,7 +117,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white fixed top-0 w-full z-50">
+    <header className={`${scrolled || isOpen ? 'bg-white' : 'bg-transparent'} fixed top-0 w-full z-50 transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
         <div className="flex justify-between h-20">
           <div className="flex">
@@ -192,7 +197,6 @@ const Navbar = () => {
                   </div>
                 )
               )}
-              {/* Sliding Dot */}
               {hoveredLink !== null && linkRefs.current[hoveredLink] && (
                 <motion.div
                   className="absolute -bottom-2 w-2 h-2 bg-[#3c3f94] rounded-full pointer-events-none"
